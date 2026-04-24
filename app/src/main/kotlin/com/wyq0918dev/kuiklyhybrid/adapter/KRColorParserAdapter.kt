@@ -1,17 +1,11 @@
 package com.wyq0918dev.kuiklyhybrid.adapter
 
 import android.content.Context
-import android.graphics.Color
+import androidx.core.graphics.toColorInt
 import com.tencent.kuikly.core.render.android.adapter.IKRColorParserAdapter
 import com.wyq0918dev.kuiklyhybrid.SkinIniFile
 
 class KRColorParserAdapter(context: Context) : IKRColorParserAdapter {
-
-    companion object {
-        private const val COLOR_UNIQUE_ID = "_color_unique_id_"
-        private const val COLOR_KUIKLY_TOKEN_PREFIX = "kuikly"
-        private const val COLOR_SECTION = "Color"
-    }
 
     private val colorIniFile = SkinIniFile(context).apply {
         load("configColor.ini")
@@ -32,8 +26,15 @@ class KRColorParserAdapter(context: Context) : IKRColorParserAdapter {
             sectionName = COLOR_SECTION,
             sectionKey = token,
             defaultValue = null
+        ) ?: error(
+            message = "找不到对应的颜色 token=$token，请检查 demo 中 configColor.ini 文件中是否存在改颜色，若不存在，手动更新一下",
         )
-            ?: throw IllegalArgumentException("找不到对应的颜色 token=$token，请检查 demo 中 configColor.ini 文件中是否存在改颜色，若不存在，手动更新一下")
-        return Color.parseColor(colorHex)
+        return colorHex.toColorInt()
+    }
+
+    companion object {
+        private const val COLOR_UNIQUE_ID = "_color_unique_id_"
+        private const val COLOR_KUIKLY_TOKEN_PREFIX = "kuikly"
+        private const val COLOR_SECTION = "Color"
     }
 }

@@ -2,6 +2,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.android.application)
+    kotlin("android")
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.google.ksp)
     alias(libs.plugins.tencent.kuikly)
@@ -57,6 +58,8 @@ ksp {
 }
 
 dependencies {
+    implementation(projects.flutter)
+
     implementation("com.tencent.kuikly-open:core:${Version.getKuiklyVersion()}")
     implementation("com.tencent.kuikly-open:core-annotations:${Version.getKuiklyVersion()}")
     api("com.tencent.kuikly-open:core-render-android:${Version.getKuiklyVersion()}")

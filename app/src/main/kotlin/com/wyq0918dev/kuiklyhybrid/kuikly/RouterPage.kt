@@ -1,14 +1,17 @@
 package com.wyq0918dev.kuiklyhybrid.kuikly
 
 import com.tencent.kuikly.core.annotations.Page
+import com.tencent.kuikly.core.base.Attr
 import com.tencent.kuikly.core.base.Color
+import com.tencent.kuikly.core.base.DeclarativeBaseView
 import com.tencent.kuikly.core.base.ViewBuilder
+import com.tencent.kuikly.core.base.ViewContainer
+import com.tencent.kuikly.core.base.event.Event
 import com.tencent.kuikly.core.views.Image
-import com.tencent.kuikly.core.views.Text
 import com.tencent.kuikly.core.views.View
 import com.wyq0918dev.kuiklyhybrid.kuikly.base.BasePager
 
-@Page("router")
+@Page(name = "router")
 class RouterPage : BasePager() {
 
     override fun body(): ViewBuilder {
@@ -19,7 +22,7 @@ class RouterPage : BasePager() {
             View {
                 attr {
                     allCenter()
-                    margin(20f)
+                    margin(16f)
                 }
                 View {
                     attr {
@@ -29,7 +32,7 @@ class RouterPage : BasePager() {
                     }
                     Image {
                         attr {
-                            src(LOGO)
+                            src("https://vfiles.gtimg.cn/wuji_dashboard/wupload/xy/starter/62394e19.png")
                             size(
                                 pagerData.pageViewWidth * 0.6f,
                                 (pagerData.pageViewWidth * 0.6f) * (1987f / 2894f)
@@ -39,22 +42,29 @@ class RouterPage : BasePager() {
                 }
 
             }
-
-            View {
+            flutterView {
                 attr {
-                    flexDirectionColumn()
-                }
-
-                Text {
-                    attr {
-                        text("Flutter")
-                    }
+                    flex(1f)
+                    margin(16f)
+                    borderRadius(allBorderRadius = 12f)
                 }
             }
         }
     }
+}
 
-    companion object {
-        const val LOGO = "https://vfiles.gtimg.cn/wuji_dashboard/wupload/xy/starter/62394e19.png"
-    }
+
+class FlutterView : DeclarativeBaseView<FlutterAttr, FlutterEvent>() {
+    override fun createAttr(): FlutterAttr = FlutterAttr()
+    override fun createEvent(): FlutterEvent = FlutterEvent()
+    override fun viewName(): String = "flutterView"
+}
+
+
+class FlutterAttr : Attr()
+
+class FlutterEvent : Event()
+
+fun ViewContainer<*, *>.flutterView(init: FlutterView.() -> Unit) {
+    addChild(FlutterView(), init)
 }
