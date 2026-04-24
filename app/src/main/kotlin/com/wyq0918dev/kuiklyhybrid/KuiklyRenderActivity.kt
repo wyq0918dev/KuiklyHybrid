@@ -164,7 +164,7 @@ class KuiklyRenderActivity : AppCompatActivity(), KuiklyRenderViewBaseDelegatorD
         with(receiver = kuiklyRenderExport) {
             renderViewExport(
                 viewName = "flutterView",
-                renderViewExportCreator = { context ->
+                renderViewExportCreator = {
                     HybridWrapperView(
                         context = this@KuiklyRenderActivity,
                         flutter = mFlutterFragment,

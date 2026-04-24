@@ -40,12 +40,11 @@ class RouterPage : BasePager() {
                         }
                     }
                 }
-
             }
-            flutterView {
+            flutter {
                 attr {
-                    flex(1f)
-                    margin(16f)
+                    flex(flex = 1f)
+                    margin(all = 16f)
                     borderRadius(allBorderRadius = 12f)
                 }
             }
@@ -54,17 +53,12 @@ class RouterPage : BasePager() {
 }
 
 
-class FlutterView : DeclarativeBaseView<FlutterAttr, FlutterEvent>() {
-    override fun createAttr(): FlutterAttr = FlutterAttr()
-    override fun createEvent(): FlutterEvent = FlutterEvent()
+class FlutterView : DeclarativeBaseView<Attr, Event>() {
+    override fun createAttr(): Attr = Attr()
+    override fun createEvent(): Event = Event()
     override fun viewName(): String = "flutterView"
 }
 
-
-class FlutterAttr : Attr()
-
-class FlutterEvent : Event()
-
-fun ViewContainer<*, *>.flutterView(init: FlutterView.() -> Unit) {
+fun ViewContainer<*, *>.flutter(init: FlutterView.() -> Unit) {
     addChild(FlutterView(), init)
 }
