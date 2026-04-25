@@ -59,11 +59,11 @@ ksp {
 
 dependencies {
     implementation(projects.flutter)
-    implementation("com.tencent.kuikly-open:core-render-android:${Version.getKuiklyVersion()}")
+    implementation(BuildPlugin.render)
 
-    implementation("com.tencent.kuikly-open:core:${Version.getKuiklyVersion()}")
-    implementation("com.tencent.kuikly-open:core-annotations:${Version.getKuiklyVersion()}")
-    ksp("com.tencent.kuikly-open:core-ksp:${Version.getKuiklyVersion()}")
+    implementation(BuildPlugin.core)
+    implementation(BuildPlugin.annotations)
+    ksp(BuildPlugin.ksp)
 
     implementation("com.github.bumptech.glide:glide:5.0.7")
     annotationProcessor("com.github.bumptech.glide:compiler:5.0.7")

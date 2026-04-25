@@ -6,6 +6,6 @@ plugins {
 
 buildscript {
     dependencies {
-        classpath(dependencyNotation = BuildPlugin.kuikly)
+        classpath(dependencyNotation = BuildPlugin.gradle)
     }
 }
